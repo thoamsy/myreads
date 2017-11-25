@@ -6,7 +6,7 @@ const options = {
   none: 'None'
 };
 
-const MoveSelect = ({ currentSelected }) => (
+const MoveSelect = ({ currentSelected = 'none' }) => (
   <div className="book-shelf-changer">
     <select defaultValue={currentSelected}>
       <option value="none" disabled>

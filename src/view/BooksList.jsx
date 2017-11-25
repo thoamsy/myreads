@@ -1,6 +1,7 @@
 import React from 'react';
 import Bookshelf from './Bookshelf';
 import { groupBy, project, compose, values } from 'ramda';
+import { Link } from 'react-router-dom';
 
 const groupByShelf = groupBy(({ shelf }) => shelf);
 const needProps = ['title', 'authors', 'imageLinks', 'shelf', 'id'];
@@ -23,6 +24,9 @@ const BooksList = ({ books }) => {
                 books={shelfOfBooks} />
             )
           )}
+      </div>
+      <div className="open-search">
+          <Link to='/search'>Add a Book</Link>
       </div>
     </div>
   );
