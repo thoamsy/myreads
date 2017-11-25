@@ -6,22 +6,27 @@ const options = {
   none: 'None'
 };
 
-const MoveSelect = ({ currentSelected = 'none' }) => (
-  <div className="book-shelf-changer">
-    <select defaultValue={currentSelected}>
-      <option value="none" disabled>
-        Move to...
+const MoveSelect = ({ currentSelected = 'none', onMoveBook }) => {
+  return (
+    <div className="book-shelf-changer">
+      <select
+        value={currentSelected}
+        onChange={onMoveBook}
+      >
+        <option value="none" disabled>
+          Move to...
       </option>
-      {
-        Object.entries(options).map(([value, text]) => (
-          <option
-            value={value}
-            key={value}
-          >{text}</option>
-        ))
-      }
-    </select>
-  </div>
-);
+        {
+          Object.entries(options).map(([value, text]) => (
+            <option
+              value={value}
+              key={value}
+            >{text}</option>
+          ))
+        }
+      </select>
+    </div>
+  );
+};
 
 export default MoveSelect;

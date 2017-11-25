@@ -1,15 +1,14 @@
 import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
-import { pick } from 'ramda';
-const BookGrid = ({ books }) => (
+const BooksGrid = ({ books, onMoveBook }) => (
   <ol className="books-grid">
     {
       !!books.length && books.map(( book ) => (
         <li key={book.id}>
           <Book
-            { ...pick(['title', 'authors', 'shelf'], book) }
-            coverSrc={book.imageLinks.thumbnail}
+            { ...book }
+            onMoveBook={onMoveBook}
           />
         </li>
       ))
@@ -17,10 +16,11 @@ const BookGrid = ({ books }) => (
   </ol>
 );
 
-BookGrid.propTypes = {
+BooksGrid.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  onMoveBook: PropTypes.func.isRequired
 };
 
-export default BookGrid;
+export default BooksGrid;

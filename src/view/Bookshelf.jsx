@@ -1,24 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const titles = {
-  currentlyReading: 'Currently Reading',
-  wantToRead: 'Want to Read',
-  read: 'Read'
-};
 import BooksGrid from './BooksGrid';
-const Bookshelf = ({ books }) => (
+const Bookshelf = ({ books, onMoveBook, shelf }) => (
   <div className="bookshelf">
-    <h2 className="bookshelf-title">{titles[books[0].shelf]}</h2>
+    <h2 className="bookshelf-title">{shelf}</h2>
     <div className="bookshelf-books">
-      <BooksGrid books={books}/>
+    {
+        !!books.length
+          ? <BooksGrid books={books} onMoveBook={onMoveBook}/>
+          : <h3>There are no books</h3>
+    }
     </div>
   </div>
 );
 
 BooksGrid.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({
-    shelf: PropTypes.string.isRequired
-  })).isRequired
+  books: PropTypes.array,
+  onMoveBook: PropTypes.func.isRequired,
 };
 
 export default Bookshelf;
