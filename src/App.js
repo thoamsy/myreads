@@ -1,7 +1,7 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
-import BooksList from './view/BooksList'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+import BooksList from './view/BooksList';
 
 class BooksApp extends React.Component {
   state = {
@@ -16,8 +16,8 @@ class BooksApp extends React.Component {
   }
 
   async componentDidMount() {
-    const books = await BooksAPI.getAll()
-    this.setState({ books })
+    const books = await BooksAPI.getAll();
+    this.setState({ books });
   }
 
   render() {
@@ -39,8 +39,8 @@ class BooksApp extends React.Component {
             <BooksList books={this.state.books}/>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;

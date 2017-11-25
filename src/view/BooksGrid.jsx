@@ -1,7 +1,7 @@
 import React from 'react';
 import Book from './Book';
-import PropTypes from 'prop-types'
-import { pick } from 'ramda'
+import PropTypes from 'prop-types';
+import { pick } from 'ramda';
 const BookGrid = ({ books }) => (
   <ol className="books-grid">
     {
@@ -21,6 +21,6 @@ BookGrid.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired
   })).isRequired
-}
+};
 
 export default BookGrid;

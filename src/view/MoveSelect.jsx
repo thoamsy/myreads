@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 const options = {
   currentlyReading: 'Currently Reading',
   wantToRead: 'Want to Read',
   read: 'Read',
   none: 'None'
-}
+};
 
-// TODO: to controllered form
 const MoveSelect = ({ currentSelected }) => (
   <div className="book-shelf-changer">
     <select defaultValue={currentSelected}>
@@ -23,6 +22,6 @@ const MoveSelect = ({ currentSelected }) => (
       }
     </select>
   </div>
-)
+);
 
-export default MoveSelect
+export default MoveSelect;

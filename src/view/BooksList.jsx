@@ -1,10 +1,10 @@
-import React from 'react'
-import Bookshelf from './Bookshelf'
-import { groupBy, project, compose, values } from 'ramda'
+import React from 'react';
+import Bookshelf from './Bookshelf';
+import { groupBy, project, compose, values } from 'ramda';
 
-const groupByShelf = groupBy(({ shelf }) => shelf)
-const needProps = ['title', 'authors', 'imageLinks', 'shelf', 'id']
-const projectBook = compose(values, groupByShelf, project(needProps))
+const groupByShelf = groupBy(({ shelf }) => shelf);
+const needProps = ['title', 'authors', 'imageLinks', 'shelf', 'id'];
+const projectBook = compose(values, groupByShelf, project(needProps));
 
 const BooksList = ({ books }) => {
   return (
@@ -25,7 +25,7 @@ const BooksList = ({ books }) => {
           )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BooksList
+export default BooksList;
