@@ -17,6 +17,7 @@ const Bookshelf = ({ books, onMoveBook, shelf }) => (
 BooksGrid.propTypes = {
   books: PropTypes.array,
   onMoveBook: PropTypes.func.isRequired,
+  shelf: PropTypes.string.isRequired
 };
 
 export default Bookshelf;
