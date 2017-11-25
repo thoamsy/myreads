@@ -20,7 +20,7 @@ const Book = (props) => (
           backgroundImage: `url(${props.coverSrc})`
         }}
       />
-      <MoveSelect/>
+      <MoveSelect currentSelected={props.shelf}/>
     </div>
     <div className="book-title">{props.title}</div>
     <div className="book-authors">{props.authors.join('\n')}</div>
@@ -30,6 +30,7 @@ const Book = (props) => (
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
-  coverSrc: PropTypes.string.isRequired
+  coverSrc: PropTypes.string.isRequired,
+  shelf: PropTypes.string.isRequired
 }
 export default Book

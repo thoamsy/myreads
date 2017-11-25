@@ -8,8 +8,7 @@ const BookGrid = ({ books }) => (
       !!books.length && books.map(( book ) => (
         <li key={book.id}>
           <Book
-            key={book.id}
-            { ...pick(['title', 'authors'], book) }
+            { ...pick(['title', 'authors', 'shelf'], book) }
             coverSrc={book.imageLinks.thumbnail}
           />
         </li>

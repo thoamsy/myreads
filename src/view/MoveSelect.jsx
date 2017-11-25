@@ -1,14 +1,28 @@
 import React from 'react'
-export default ({ currentSelected }) => (
+const options = {
+  currentlyReading: 'Currently Reading',
+  wantToRead: 'Want to Read',
+  read: 'Read',
+  none: 'None'
+}
+
+// TODO: to controllered form
+const MoveSelect = ({ currentSelected }) => (
   <div className="book-shelf-changer">
-    <select>
+    <select defaultValue={currentSelected}>
       <option value="none" disabled>
         Move to...
       </option>
-      <option value="currentlyReading">Currently Reading</option>
-      <option value="wantToRead">Want to Read</option>
-      <option value="read">Read</option>
-      <option value="none">None</option>
+      {
+        Object.entries(options).map(([value, text]) => (
+          <option
+            value={value}
+            key={value}
+          >{text}</option>
+        ))
+      }
     </select>
   </div>
 )
+
+export default MoveSelect
