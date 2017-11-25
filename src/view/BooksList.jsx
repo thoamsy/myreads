@@ -10,7 +10,7 @@ const titles = {
 };
 
 const BooksList = (props) => {
-  const books = Object.entries(this.props.books);
+  const books = Object.entries(props.books);
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -23,7 +23,7 @@ const BooksList = (props) => {
           books.map(
             ([shelf, shelfOfBooks], i) => (
               <Bookshelf
-                onMoveBook={this.props.moveBooks}
+                onMoveBook={props.moveBooks}
                 shelf={titles[shelf]}
                 key={i}
                 books={shelfOfBooks} />

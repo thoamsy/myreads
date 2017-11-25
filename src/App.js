@@ -14,7 +14,7 @@ import { Route } from 'react-router-dom';
 
 class BooksApp extends React.PureComponent {
   state = {
-    books: []
+    books: {}
   }
 
   async componentDidMount() {
@@ -22,8 +22,13 @@ class BooksApp extends React.PureComponent {
     this.setState({ books: projectBook(books) });
   }
 
+
+  componentDidUpdate () {
+  }
+
   moveBooks = (from, to, book) => {
     if (to === 'none') return; 
+    BooksAPI.update(book, to);
     this.setState(({ books }) => {
       const shelfAddBook = assoc(
         to,
