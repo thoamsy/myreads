@@ -5,9 +5,10 @@ import { pick } from 'ramda'
 const BookGrid = ({ books }) => (
   <ol className="books-grid">
     {
-      books && books.map(( book ) => (
+      !!books.length && books.map(( book ) => (
         <li key={book.id}>
           <Book
+            key={book.id}
             { ...pick(['title', 'authors'], book) }
             coverSrc={book.imageLinks.thumbnail}
           />
@@ -18,7 +19,9 @@ const BookGrid = ({ books }) => (
 );
 
 BookGrid.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object).isRequired
+  books: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired
+  })).isRequired
 }
 
 export default BookGrid;

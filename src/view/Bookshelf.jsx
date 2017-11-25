@@ -6,9 +6,9 @@ const titles = {
   read: 'Read'
 }
 import BooksGrid from './BooksGrid'
-const Bookshelf = ({ shelf, books }) => (
+const Bookshelf = ({ books }) => (
   <div className="bookshelf">
-    <div className="bookshelf-title">{titles[shelf]}</div>
+    <h2 className="bookshelf-title">{titles[books[0].shelf]}</h2>
     <div className="bookshelf-books">
       <BooksGrid books={books}/>
     </div>
@@ -16,8 +16,9 @@ const Bookshelf = ({ shelf, books }) => (
 );
 
 BooksGrid.propTypes = {
-  shelf: PropTypes.string.isRequired,
-  books: PropTypes.arrayOf(PropTypes.object).isRequired
+  books: PropTypes.arrayOf(PropTypes.shape({
+    shelf: PropTypes.string.isRequired
+  })).isRequired
 }
 
 export default Bookshelf;
