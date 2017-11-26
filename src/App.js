@@ -11,7 +11,7 @@ import {
 const groupByShelf = groupBy(({ shelf }) => shelf);
 const needProps = ['title', 'authors', 'imageLinks', 'shelf', 'id'];
 const projectBook = compose(groupByShelf, project(needProps));
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 class BooksApp extends React.PureComponent {
   state = {
@@ -29,11 +29,8 @@ class BooksApp extends React.PureComponent {
   }
 
 
-  componentDidUpdate () {
-  }
-
   moveBooks = (from, to, book) => {
-    if (to === 'none') return; 
+    if (to === 'none' || from === to) return; 
     console.log(from, to, book);
     BooksAPI.update(book, to);
     this.setState(({ books }) => {
@@ -47,6 +44,7 @@ class BooksApp extends React.PureComponent {
         reject(propEq('id', book.id), books[from]),
         shelfAddBook
       ) : shelfAddBook;
+      book = null;
       return {
         books: booksToShelf
       };
@@ -55,6 +53,7 @@ class BooksApp extends React.PureComponent {
 
   render() {
     return (
+      <BrowserRouter>
       <div className="app">
       <Switch>
         <Route
@@ -83,6 +82,7 @@ class BooksApp extends React.PureComponent {
           />
         </Switch>
       </div>
+      </BrowserRouter>
     );
   }
 }
