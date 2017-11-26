@@ -20,7 +20,6 @@ class Book extends PureComponent {
   }
 
   componentDidCatch (error, info) {
-    console.log('???', info);
     this.setState({ error: error });
   }
 
@@ -40,7 +39,7 @@ class Book extends PureComponent {
     // 有些结果没有封面，奇怪……
     const cover = imageLinks ? imageLinks.thumbnail : '';
     return (
-      <div className="book">
+      <div className="book" draggable>
         <div className="book-top">
           <div
             alt={`The cover of ${title}`}
