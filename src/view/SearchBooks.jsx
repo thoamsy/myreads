@@ -8,6 +8,9 @@ class SearchBooks extends PureComponent {
     error: null
   }
 
+  componentWillUnmount () {
+    this.props.changeSearch('');
+  }
   search = debounce(value => {
     search(value, 10).then(result => {
       if (!result || result.error) {
@@ -24,7 +27,7 @@ class SearchBooks extends PureComponent {
 
   handleSearch = ({ target }) => {
     const { value } = target;
-    this.props.onSearch(value);
+    this.props.changeSearch(value);
     this.search(value);
   }
 
@@ -33,7 +36,7 @@ class SearchBooks extends PureComponent {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/" replace/>
+          <Link className="close-search" to="/"/>
           <div className="search-books-input-wrapper">
             <input
               onChange={this.handleSearch}

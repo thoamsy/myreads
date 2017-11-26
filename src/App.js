@@ -70,7 +70,7 @@ class BooksApp extends React.PureComponent {
           render={() => (
             <SearchBooks
               query={this.state.search}
-              onSearch={this.onSearch}
+              changeSearch={this.onSearch}
               index={this.state.index}
             >
               {
