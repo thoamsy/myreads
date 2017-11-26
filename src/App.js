@@ -38,12 +38,13 @@ class BooksApp extends React.PureComponent {
 
   moveBooks = (from, to, book) => {
     if (to === 'none' || from === to) return; 
-    console.log(from, to, book);
     BooksAPI.update(book, to);
-    this.setState(({ books }) => {
+
+    const newBook = assoc('shelf', to, book);
+    this.setState(({ books, index }) => {
       const shelfAddBook = assoc(
         to,
-        books[to].concat(assoc('shelf', to, book)),
+        books[to].concat(newBook),
         books
       );
       const booksToShelf = from !== 'none' ? assoc(
@@ -51,9 +52,10 @@ class BooksApp extends React.PureComponent {
         reject(propEq('id', book.id), books[from]),
         shelfAddBook
       ) : shelfAddBook;
-      book = null;
+      index.set(newBook.id, newBook);
       return {
-        books: booksToShelf
+        books: booksToShelf,
+        index
       };
     });
   }
