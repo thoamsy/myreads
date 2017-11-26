@@ -8,7 +8,8 @@ const options = {
 
 const MoveSelect = ({ currentSelected, onMoveBook }) => {
   return (
-    <div className="book-shelf-changer">
+    <div
+      className={`book-shelf-changer ${currentSelected !== 'none' ? 'has' : ''}`}>
       <select
         value={currentSelected}
         onChange={onMoveBook}
