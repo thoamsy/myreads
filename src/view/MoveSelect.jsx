@@ -6,14 +6,14 @@ const options = {
   none: 'None'
 };
 
-const MoveSelect = ({ currentSelected = 'none', onMoveBook }) => {
+const MoveSelect = ({ currentSelected, onMoveBook }) => {
   return (
     <div className="book-shelf-changer">
       <select
         value={currentSelected}
         onChange={onMoveBook}
       >
-        <option value="none" disabled>
+        <option disabled>
           Move to...
       </option>
         {
@@ -27,6 +27,10 @@ const MoveSelect = ({ currentSelected = 'none', onMoveBook }) => {
       </select>
     </div>
   );
+};
+
+MoveSelect.defaultProps = {
+  currentSelected: 'none'
 };
 
 export default MoveSelect;
