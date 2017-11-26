@@ -13,6 +13,17 @@ class SearchBooks extends PureComponent {
       if (!result || result.error) {
         this.setState({ error: result.error });
       } else {
+        // for (let i = 0; i < result.length; ++i) {
+        //   const book = result[i];
+        //   if (this.props.index.has(book.id)) {
+        //     result[i] = this.props.index.get(book.id);
+        //   }
+        // }
+
+        result = result.map(
+          book => this.props.index.get(book.id) || book
+        );
+
         this.setState({ searchedBooks: result, error: null });
       }
     });

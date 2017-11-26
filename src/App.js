@@ -16,18 +16,25 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 class BooksApp extends React.PureComponent {
   state = {
     books: {},
-    search: ''
+    search: '',
+    index: null
   }
 
   async componentDidMount() {
     const books = await BooksAPI.getAll();
-    this.setState({ books: projectBook(books) });
+    let map = new Map();
+    books.forEach(book => {
+      map.set(book.id, book);
+    });
+    this.setState({
+      books: projectBook(books),
+      index: map
+    });
   }
 
   onSearch = (value) => {
     this.setState({ search: value });
   }
-
 
   moveBooks = (from, to, book) => {
     if (to === 'none' || from === to) return; 
@@ -62,6 +69,7 @@ class BooksApp extends React.PureComponent {
             <SearchBooks
               query={this.state.search}
               onSearch={this.onSearch}
+              index={this.state.index}
             >
               {
                 (books) =>

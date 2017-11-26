@@ -56,7 +56,7 @@ class Book extends PureComponent {
           />
         </div>
         <div className="book-title">{title}</div>
-        <div className="book-authors">{authors.join('\n')}</div>
+        <div className="book-authors">{authors.join(' & ')}</div>
       </div>
     );
   }
