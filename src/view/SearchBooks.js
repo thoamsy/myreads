@@ -5,10 +5,10 @@ import { search } from '../BooksAPI';
 class SearchBooks extends PureComponent {
   state = {
     searchedBooks: [],
-    error: null
-  }
+    error: null,
+  };
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.changeSearch('');
   }
   search = debounce(value => {
@@ -16,27 +16,35 @@ class SearchBooks extends PureComponent {
       if (!result || result.error) {
         this.setState({ error: result.error });
       } else {
-        result = result.map(
-          book => this.props.index.get(book.id) || book
-        );
+        result = result.map(book => this.props.index.get(book.id) || book);
 
         this.setState({ searchedBooks: result, error: null });
       }
     });
-  }, 200)
+  }, 200);
 
   handleSearch = ({ target }) => {
     const { value } = target;
     this.props.changeSearch(value);
     this.search(value);
-  }
+  };
+
+  closeSearch = event => {
+    event.preventDefault();
+    this.props.history.goBack();
+  };
 
   render() {
     const { searchedBooks, error } = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/"/>
+          <a
+            className="close-search"
+            aria-label="close"
+            onClick={this.closeSearch}
+            href="/"
+          />
           <div className="search-books-input-wrapper">
             <input
               onChange={this.handleSearch}
@@ -47,7 +55,7 @@ class SearchBooks extends PureComponent {
           </div>
         </div>
         <div className="search-books-results">
-          { error || this.props.children(searchedBooks) }
+          {error || this.props.children(searchedBooks)}
         </div>
       </div>
     );

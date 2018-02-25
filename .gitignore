@@ -3,3 +3,5 @@ yarn.lock
 .DS_Store
 CONTRIBUTING.md
 SEARCH_TERMS.md
+build/
+.code/

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://http://thoamsy.github.io/myreads/",
+  "homepage": "https://thoamsy.github.io/myreads/",
   "dependencies": {
     "bulma": "^0.6.1",
     "prop-types": ">15.5.8",

@@ -6,35 +6,30 @@ const coverStyle = {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
   width: 128,
-  height: 192
+  height: 192,
 };
 
 class Book extends PureComponent {
   state = {
     shelf: this.props.shelf || 'none',
-    error: null
-  }
+    error: null,
+  };
 
   onChangeShelf = ({ target }) => {
     this.setState({ shelf: target.value });
-  }
+  };
 
-  componentDidCatch (error, info) {
-    console.log('???', info);
+  componentDidCatch(error, info) {
     this.setState({ error: error });
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.shelf && this.state.shelf !== prevState.shelf) {
-      this.props.onMoveBook(
-        prevState.shelf,
-        this.state.shelf,
-        this.props
-      );
+      this.props.onMoveBook(prevState.shelf, this.state.shelf, this.props);
     }
   }
 
-  render () {
+  render() {
     const { imageLinks, title, authors = [] } = this.props;
     const { shelf, error } = this.state;
     // 有些结果没有封面，奇怪……
@@ -47,13 +42,10 @@ class Book extends PureComponent {
             className="book-cover"
             style={{
               ...coverStyle,
-              backgroundImage: `url(${cover})`
+              backgroundImage: `url(${cover})`,
             }}
           />
-          <MoveSelect
-            currentSelected={shelf}
-            onMoveBook={this.onChangeShelf}
-          />
+          <MoveSelect currentSelected={shelf} onMoveBook={this.onChangeShelf} />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">{authors.join(' & ')}</div>
@@ -66,9 +58,9 @@ Book.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.array,
   imageLinks: PropTypes.shape({
-    thumbnail: PropTypes.string
+    thumbnail: PropTypes.string,
   }),
   shelf: PropTypes.string,
-  onMoveBook: PropTypes.func.isRequired
+  onMoveBook: PropTypes.func.isRequired,
 };
 export default Book;
